@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title>List of best Hotels in India and Australia </title>
+  </head>
+
+  <body onload = "loadMap()">
+    <h2>List of Hotels</h2>
+    <!--<div button id ="b1" type = "radio" placeholder = "Select your country" value = "India"></div>
+    <div button id ="b2" type = "radio" placeholder = "Select your country" value = "Australia"></div>-->
+
+    <div id = "map" style = "width:640px; height:480px;"></div>
+      <script>
+
+        
+
+        // fake JSON call
+        function getJSONMarkers() {
+          const markers = [
+          
+            {
+              name:  "Crowne Towers Perth",
+              location: [-18.8010128,93.5906753]
+            },
+            {
+              name: "The Hilton, Sydney",
+              location: [-18.8010128,93.5906753]
+            },
+                       
+            {
+              name :"Park Hyatt Sydney",
+              location : [18.8010128,93.5906753]
+            }
+
+          ];
+          return markers;
+        }
+
+        function loadMap() {
+          // Initialize Google Maps
+          const mapOptions = {
+            center:new google.maps.LatLng(-25.0298282,115.2044343),
+            zoom: 11
+          }
+          const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+          // Load JSON Data
+          const hotelMarkers = getJSONMarkers();
+
+          // Initialize Google Markers
+          for(hotel of hotelMarkers) {
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(hotel.location[0], hotel.location[1]),
+              title: hotel.name
+            })
+          }
+        }
+      </script>
+      <script src = "https://maps.googleapis.com/maps/api/js"></script>
+      <!--https://www.google.com/maps/place/Australia/@-25.0298282,115.2044343,4z/data=!3m1!4b1!4m5!3m4!1s0x2b2bfd076787c5df:0x538267a1955b1352!8m2!3d-25.274398!4d133.775136-->
+  </body>
+</html>
